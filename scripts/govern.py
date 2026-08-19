@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse, json, sys
 from collections import defaultdict
 from rdflib import RDF, RDFS, OWL, URIRef, Literal
-from common import ROOT, SH, SKOS, load_graph, load_sample_graph, semantic_diff, git_identity, bump, utc_now, ensure_json, term
+from common import ROOT, SH, SKOS, load_graph, load_sample_graph, rdf_files, parse_rdf, semantic_diff, git_identity, bump, utc_now, ensure_json, term
 
 SEMANTIC_PREDICATES_MAJOR = {
     RDFS.subClassOf, RDFS.domain, RDFS.range, OWL.disjointWith, OWL.equivalentClass,
@@ -23,8 +23,8 @@ def parse_all_ttl(base):
         p=base/folder
         if not p.exists(): continue
         from rdflib import Graph
-        for f in sorted(p.rglob('*.ttl')):
-            try: Graph().parse(f, format='turtle')
+        for f in rdf_files(base, [folder]):
+            try: parse_rdf(f)
             except Exception as e: errors.append(f"{f.relative_to(base)}: {e}")
     return errors
 
@@ -159,13 +159,13 @@ def changed_files(base_old, base_new=ROOT):
     for folder in ['ontology','vocabulary','shapes']:
         files=set()
         op=base_old/folder; np=base_new/folder
-        if op.exists(): files |= {f.relative_to(base_old) for f in op.rglob('*.ttl')}
-        if np.exists(): files |= {f.relative_to(base_new) for f in np.rglob('*.ttl')}
+        files |= {f.relative_to(base_old) for f in rdf_files(base_old, [folder])}
+        files |= {f.relative_to(base_new) for f in rdf_files(base_new, [folder])}
         for rel in sorted(files):
             a=base_old/rel; b=base_new/rel
             if not a.exists() or not b.exists():
                 out.append(str(rel)); continue
-            ga=Graph(); gb=Graph(); ga.parse(a,format='turtle'); gb.parse(b,format='turtle')
+            ga=parse_rdf(a); gb=parse_rdf(b)
             old_only,new_only=semantic_diff(ga,gb)
             if old_only or new_only: out.append(str(rel))
     return out

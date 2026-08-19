@@ -1,5 +1,5 @@
 flowchart TD
-    A[Developer edits Turtle] --> B{watch.py detects save?}
+    A[Developer edits .ttl or .jsonld] --> B{watch.py detects save?}
     B -- No --> B
     B -- Yes --> C[govern.py parses artifacts]
     C --> D[Load approved release and working RDF graphs]

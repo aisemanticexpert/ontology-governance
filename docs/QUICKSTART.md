@@ -2,8 +2,8 @@
 
 1. Run `python scripts/govern.py` and confirm PASS.
 2. Run `python scripts/watch.py` in terminal A.
-3. Open `ontology/ins/policy.ttl`.
-4. Add a new class under the policy namespace, save the file, and observe terminal A.
+3. Open an ontology file such as `ontology/ins/policy.ttl` or a `.jsonld` file under `ontology/`, `vocabulary/`, `shapes/`, or `samples/`.
+4. Add a new class under the policy namespace, save the file, and observe terminal A. Both Turtle and JSON-LD are supported.
 5. Open `reports/latest/change-report.md`.
 6. If validation passes, create a PR. GitHub Actions runs the same gate.
 7. A steward reviews semantic impact and approves.

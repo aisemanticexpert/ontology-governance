@@ -4,15 +4,15 @@
 
 ## What this project proves
 
-A developer can change any Turtle file under `ontology/`, `vocabulary/`, or `shapes/`. The governance engine detects the change against the currently approved release, calculates an RDF semantic diff, validates namespace and sample-data rules, classifies semantic impact, recommends a SemVer release, and produces an auditable report. An approved release then creates an immutable snapshot, PROV-O change record, registry update, and an `ONTOLOGY_RELEASED` event.
+A developer can change any RDF file in Turtle (`.ttl`) or JSON-LD (`.jsonld`) under `ontology/`, `vocabulary/`, or `shapes/`. The governance engine detects the change against the currently approved release, calculates an RDF semantic diff, validates namespace and sample-data rules, classifies semantic impact, recommends a SemVer release, and produces an auditable report. An approved release then creates an immutable snapshot, PROV-O change record, registry update, and an `ONTOLOGY_RELEASED` event.
 
-**Code-level flow:** `scripts/watch.py` detects Turtle changes and invokes `scripts/govern.py`, which compares RDF graphs from the working tree and approved release, validates SHACL and consistency rules, classifies impact, recommends a version, and writes governance evidence to `reports/latest/`.
+**Code-level flow:** `scripts/watch.py` detects `.ttl` and `.jsonld` changes and invokes `scripts/govern.py`, which parses both serializations into RDF graphs, compares the working tree with the approved release, validates SHACL and consistency rules, classifies impact, recommends a version, and writes governance evidence to `reports/latest/`.
 
 ## Operation flow
 
-1. A developer edits a Turtle file under `ontology/`, `vocabulary/`, `shapes/`, or `samples/`.
+1. A developer edits a `.ttl` or `.jsonld` RDF file under `ontology/`, `vocabulary/`, `shapes/`, or `samples/`.
 2. `scripts/watch.py` snapshots file modification times, detects the save, and runs `scripts/govern.py`.
-3. `govern.py` parses all Turtle files, loads the approved release from `governance/release-state.json`, and compares its RDF graph with the working graph using `semantic_diff()` in `scripts/common.py`.
+3. `govern.py` parses all `.ttl` and `.jsonld` files, loads the approved release from `governance/release-state.json`, and compares its RDF graph with the working graph using `semantic_diff()` in `scripts/common.py`.
 4. The gate validates namespaces, sample data, SHACL constraints, and ontology consistency; any error produces a `FAIL` result and exit code `2`.
 5. The gate classifies semantic changes as `NONE`, `PATCH`, `MINOR`, or `MAJOR`, calculates the next SemVer recommendation, and writes `reports/latest/change-report.json` and `reports/latest/change-report.md`.
 6. A reviewer approves a valid change by running `scripts/release.py` with an approver, ticket, and reason.
@@ -21,7 +21,7 @@ A developer can change any Turtle file under `ontology/`, `vocabulary/`, or `sha
 
 ```mermaid
 flowchart TD
-  A[Developer edits Turtle] --> B{watch.py detects save?}
+  A[Developer edits .ttl or .jsonld] --> B{watch.py detects save?}
   B -- No --> B
   B -- Yes --> C[govern.py parses artifacts]
   C --> D[Load approved release and working RDF graphs]
@@ -72,7 +72,7 @@ Expected: `Semantic impact: NONE`, validation `PASS`.
 python scripts/watch.py
 ```
 
-Leave this terminal open. Edit `ontology/ins/policy.ttl` in another editor. Any `.ttl` save triggers the governance gate automatically.
+Leave this terminal open. Edit `ontology/ins/policy.ttl` or an `ontology/**/*.jsonld` file in another editor. Any `.ttl` or `.jsonld` save triggers the governance gate automatically.
 
 ## 4. Try a safe additive change
 

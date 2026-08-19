@@ -2,17 +2,17 @@
 from pathlib import Path
 import argparse, json, shutil, re, uuid
 from rdflib import Graph, URIRef, Literal, RDF, OWL, Namespace
-from common import ROOT, utc_now, ensure_json, git_identity
+from common import ROOT, utc_now, ensure_json, git_identity, rdf_files, parse_rdf, rdf_format
 
 PROV=Namespace('http://www.w3.org/ns/prov#'); DCT=Namespace('http://purl.org/dc/terms/'); GOV=Namespace('https://data.chubb.com/ontology/misc/governance/')
 
 def inject_version(ttl_path, version):
-    g=Graph(); g.parse(ttl_path,format='turtle')
+    g=parse_rdf(ttl_path)
     onts=list(g.subjects(RDF.type,OWL.Ontology))
     for ont in onts:
         g.remove((ont,OWL.versionIRI,None)); g.remove((ont,OWL.versionInfo,None)); g.remove((ont,DCT.issued,None))
         g.add((ont,OWL.versionIRI,URIRef(str(ont)+version))); g.add((ont,OWL.versionInfo,Literal(version))); g.add((ont,DCT.issued,Literal(utc_now())))
-    g.serialize(ttl_path,format='turtle')
+    g.serialize(ttl_path,format=rdf_format(ttl_path))
 
 def main():
     ap=argparse.ArgumentParser(description='Create an immutable approved ontology release')
@@ -24,7 +24,7 @@ def main():
     if out.exists(): raise SystemExit(f'Release {version} already exists.')
     for folder in ['ontology','vocabulary','shapes']:
         shutil.copytree(ROOT/folder,out/folder)
-    for f in (out/'ontology').rglob('*.ttl'): inject_version(f,version)
+    for f in rdf_files(out, ['ontology']): inject_version(f,version)
     change_id=args.change_id or f"CHG-{utc_now()[:4]}-{uuid.uuid4().hex[:6].upper()}"
     ident=git_identity(); now=utc_now()
     manifest={'releaseId':f'REL-{version}','version':version,'previousVersion':report['baselineVersion'],'changeId':change_id,'ticket':args.ticket,'reason':args.reason,'approvedBy':args.approved_by,'releasedAt':now,'author':ident,'impact':report['changeLevel'],'changedFiles':report['changedFiles']}

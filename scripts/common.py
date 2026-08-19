@@ -11,26 +11,36 @@ DCT = Namespace("http://purl.org/dc/terms/")
 EXG = Namespace("https://data.chubb.com/ontology/misc/governance/")
 
 ARTIFACT_DIRS = ["ontology", "vocabulary", "shapes"]
+RDF_FORMATS = {'.ttl': 'turtle', '.jsonld': 'json-ld'}
 IGNORE_PREDICATES = {OWL.versionIRI, OWL.versionInfo, DCT.issued, DCT.modified}
 
 
 def utc_now():
     return datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat()
 
-def load_graph(base: Path, dirs=ARTIFACT_DIRS):
-    g=Graph()
+def rdf_files(base: Path, dirs=ARTIFACT_DIRS):
+    files=[]
     for d in dirs:
         p=base/d
-        if not p.exists(): continue
-        for f in sorted(p.rglob('*.ttl')):
-            g.parse(f, format='turtle')
+        if p.exists():
+            files.extend(f for f in p.rglob('*') if f.is_file() and f.suffix.lower() in RDF_FORMATS)
+    return sorted(files)
+
+def rdf_format(path: Path):
+    try: return RDF_FORMATS[path.suffix.lower()]
+    except KeyError: raise ValueError(f'Unsupported RDF file format: {path}')
+
+def parse_rdf(path: Path):
+    g=Graph(); g.parse(path, format=rdf_format(path)); return g
+
+def load_graph(base: Path, dirs=ARTIFACT_DIRS):
+    g=Graph()
+    for f in rdf_files(base, dirs): g += parse_rdf(f)
     return g
 
 def load_sample_graph(base: Path):
     g=Graph()
-    p=base/'samples'
-    if p.exists():
-        for f in sorted(p.rglob('*.ttl')): g.parse(f, format='turtle')
+    for f in rdf_files(base, ['samples']): g += parse_rdf(f)
     return g
 
 def semantic_diff(old: Graph, new: Graph):
