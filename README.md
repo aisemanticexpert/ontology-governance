@@ -6,6 +6,41 @@
 
 A developer can change any Turtle file under `ontology/`, `vocabulary/`, or `shapes/`. The governance engine detects the change against the currently approved release, calculates an RDF semantic diff, validates namespace and sample-data rules, classifies semantic impact, recommends a SemVer release, and produces an auditable report. An approved release then creates an immutable snapshot, PROV-O change record, registry update, and an `ONTOLOGY_RELEASED` event.
 
+**Code-level flow:** `scripts/watch.py` detects Turtle changes and invokes `scripts/govern.py`, which compares RDF graphs from the working tree and approved release, validates SHACL and consistency rules, classifies impact, recommends a version, and writes governance evidence to `reports/latest/`.
+
+## Operation flow
+
+1. A developer edits a Turtle file under `ontology/`, `vocabulary/`, `shapes/`, or `samples/`.
+2. `scripts/watch.py` snapshots file modification times, detects the save, and runs `scripts/govern.py`.
+3. `govern.py` parses all Turtle files, loads the approved release from `governance/release-state.json`, and compares its RDF graph with the working graph using `semantic_diff()` in `scripts/common.py`.
+4. The gate validates namespaces, sample data, SHACL constraints, and ontology consistency; any error produces a `FAIL` result and exit code `2`.
+5. The gate classifies semantic changes as `NONE`, `PATCH`, `MINOR`, or `MAJOR`, calculates the next SemVer recommendation, and writes `reports/latest/change-report.json` and `reports/latest/change-report.md`.
+6. A reviewer approves a valid change by running `scripts/release.py` with an approver, ticket, and reason.
+7. `release.py` copies the working ontology, vocabulary, and shapes into `releases/<version>/`, injects immutable version metadata, writes the manifest and PROV-O record, emits the release event JSON, and updates `governance/release-state.json`.
+8. The release commit is pushed through Git; CI repeats compilation, tests, parsing, governance validation, semantic comparison, and evidence generation.
+
+```mermaid
+flowchart TD
+  A[Developer edits Turtle] --> B{watch.py detects save?}
+  B -- No --> B
+  B -- Yes --> C[govern.py parses artifacts]
+  C --> D[Load approved release and working RDF graphs]
+  D --> E[Semantic RDF diff]
+  E --> F[Namespace, SHACL, sample, and consistency validation]
+  F --> G{Validation passes?}
+  G -- No --> H[Write FAIL report and stop]
+  G -- Yes --> I[Classify NONE, PATCH, MINOR, or MAJOR]
+  I --> J[Recommend SemVer and write governance reports]
+  J --> K{Reviewer approves change?}
+  K -- No --> L[Revise or reset working tree]
+  L --> A
+  K -- Yes --> M[release.py creates immutable snapshot]
+  M --> N[Write manifest, PROV-O record, event, and release state]
+  N --> O[Commit and push; CI repeats the gate]
+```
+
+Download the rendered flowchart: [operation-flowchart.pdf](docs/images/operation-flowchart.pdf).
+
 ## 1. Install
 
 ```bash
