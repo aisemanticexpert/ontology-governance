@@ -1,0 +1,41 @@
+@prefix core: <https://data.chubb.com/ontology/fnd/core/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+core:Agreement a owl:Class ;
+    rdfs:label "Agreement"@en ;
+    rdfs:subClassOf core:BusinessEntity .
+
+core:Event a owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:subClassOf core:BusinessEntity .
+
+core:Person a owl:Class ;
+    rdfs:label "Person"@en ;
+    rdfs:subClassOf core:Party ;
+    owl:disjointWith core:Organization .
+
+core:identifier a owl:DatatypeProperty ;
+    rdfs:label "identifier"@en ;
+    rdfs:range xsd:string .
+
+core: a owl:Ontology ;
+    dct:description "Illustrative foundation module used by the ontology-governance demo."@en ;
+    dct:title "Chubb Enterprise Foundation Ontology - Demo"@en ;
+    vann:preferredNamespacePrefix "core" ;
+    vann:preferredNamespaceUri core: .
+
+core:Organization a owl:Class ;
+    rdfs:label "Organization"@en ;
+    rdfs:subClassOf core:Party .
+
+core:Party a owl:Class ;
+    rdfs:label "Party"@en ;
+    rdfs:subClassOf core:BusinessEntity .
+
+core:BusinessEntity a owl:Class ;
+    rdfs:label "Business Entity"@en .
+

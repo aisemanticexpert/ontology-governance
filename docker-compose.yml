@@ -1,0 +1,13 @@
+services:
+  governance:
+    build: .
+    command: python scripts/govern.py --ci
+    volumes:
+      - .:/app
+
+  watcher:
+    build: .
+    command: python scripts/watch.py
+    volumes:
+      - .:/app
+    profiles: ["watch"]

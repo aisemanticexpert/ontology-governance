@@ -1,0 +1,20 @@
+@prefix sh:       <http://www.w3.org/ns/shacl#> .
+@prefix shpolicy: <https://data.chubb.com/shapes/ins/policy/> .
+@prefix policy:   <https://data.chubb.com/ontology/ins/policy/> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+
+shpolicy:PolicyShape a sh:NodeShape ;
+    sh:targetClass policy:Policy ;
+    sh:property [
+        sh:path policy:policyNumber ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "A policy must have exactly one string policyNumber."@en
+    ] ;
+    sh:property [
+        sh:path policy:hasCoverage ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "A policy should provide at least one coverage."@en
+    ] .

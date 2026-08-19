@@ -1,0 +1,65 @@
+name: Ontology Governance
+
+on:
+  pull_request:
+    paths:
+      - 'ontology/**/*.ttl'
+      - 'vocabulary/**/*.ttl'
+      - 'shapes/**/*.ttl'
+      - 'samples/**/*.ttl'
+      - 'governance/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'requirements*.txt'
+  push:
+    branches: [ main ]
+    paths:
+      - 'ontology/**/*.ttl'
+      - 'vocabulary/**/*.ttl'
+      - 'shapes/**/*.ttl'
+      - 'samples/**/*.ttl'
+      - 'governance/**'
+      - 'scripts/**'
+      - 'tests/**'
+
+jobs:
+  governance-gate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements-full.txt
+
+      - name: Compile Python automation
+        run: python -m compileall -q scripts
+
+      - name: Run smoke tests
+        run: python -m pytest -q
+
+      - name: Run ontology governance gate
+        run: python scripts/govern.py --ci
+
+      - name: Add report to job summary
+        if: always()
+        run: |
+          if [ -f reports/latest/change-report.md ]; then
+            cat reports/latest/change-report.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload governance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ontology-governance-report
+          path: reports/latest/

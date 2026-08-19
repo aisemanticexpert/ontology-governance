@@ -1,0 +1,18 @@
+digraph G {
+  graph [rankdir=TB, bgcolor="white", pad="0.2", nodesep="0.25", ranksep="0.35"];
+  node [shape=folder, style="filled", fillcolor="white", fontname="Arial", fontsize=10];
+  repo [shape=box, label="chubb-enterprise-ontology/", style="rounded,filled"];
+  ont [label="ontology/\nOWL/RDFS meaning"];
+  voc [label="vocabulary/\nSKOS controlled values"];
+  shp [label="shapes/\nSHACL validation"];
+  sam [label="samples/\nA-Box tests"];
+  gov [label="governance/\nowners + policy + current release"];
+  cha [label="changes/\nChangeSet audit"];
+  rel [label="releases/\nimmutable approved versions"];
+  prov [label="provenance/\nPROV-O history"];
+  rep [label="reports/\nsemantic diff + CI evidence"];
+  evt [label="events/\nrelease notifications"];
+  scr [label="scripts/\nautomation"];
+  ci [label=".github/workflows/\nPR governance gate"];
+  repo -> {ont voc shp sam gov cha rel prov rep evt scr ci};
+}

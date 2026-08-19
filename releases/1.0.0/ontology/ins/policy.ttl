@@ -1,0 +1,43 @@
+@prefix core: <https://data.chubb.com/ontology/fnd/core/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix policy: <https://data.chubb.com/ontology/ins/policy/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+policy:CommercialPolicy a owl:Class ;
+    rdfs:label "Commercial Policy"@en ;
+    rdfs:subClassOf policy:Policy .
+
+policy:PersonalPolicy a owl:Class ;
+    rdfs:label "Personal Policy"@en ;
+    rdfs:subClassOf policy:Policy .
+
+policy:hasCoverage a owl:ObjectProperty ;
+    rdfs:label "has coverage"@en ;
+    rdfs:domain policy:Policy ;
+    rdfs:range policy:Coverage .
+
+policy:policyNumber a owl:DatatypeProperty ;
+    rdfs:label "policy number"@en ;
+    rdfs:domain policy:Policy ;
+    rdfs:range xsd:string .
+
+policy: a owl:Ontology ;
+    dct:issued "2026-08-19" ;
+    dct:title "Chubb Policy Ontology - Demo"@en ;
+    vann:preferredNamespacePrefix "policy" ;
+    vann:preferredNamespaceUri policy: ;
+    owl:imports core: ;
+    owl:versionIRI policy:1.0.0 ;
+    owl:versionInfo "1.0.0" .
+
+policy:Coverage a owl:Class ;
+    rdfs:label "Coverage"@en .
+
+policy:Policy a owl:Class ;
+    rdfs:label "Policy"@en ;
+    rdfs:comment "An insurance agreement represented for this governance demonstration."@en ;
+    rdfs:subClassOf core:Agreement .
+

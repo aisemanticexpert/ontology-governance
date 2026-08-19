@@ -1,0 +1,7 @@
+changeId: CHG-YYYY-NNNN
+ticket: ONTO-0000
+author: user.name
+reason: Explain the business reason, not just the code edit.
+module: ontology/ins/policy.ttl
+requestedImpact: auto
+migrationNotes: none

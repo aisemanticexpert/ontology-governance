@@ -1,0 +1,25 @@
+organization: Chubb
+purpose: Illustrative ontology governance configuration
+namespace_host: https://data.chubb.com/
+allowed_roots:
+  - https://data.chubb.com/ontology/
+  - https://data.chubb.com/vocabulary/
+  - https://data.chubb.com/shapes/
+  - https://data.chubb.com/resource/
+protected_external_namespaces:
+  - http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  - http://www.w3.org/2000/01/rdf-schema#
+  - http://www.w3.org/2002/07/owl#
+  - http://www.w3.org/2004/02/skos/core#
+  - http://www.w3.org/ns/shacl#
+  - http://purl.org/dc/terms/
+versioning:
+  strategy: semantic-impact
+  current_release_file: governance/release-state.json
+  default_unknown_semantic_change: MAJOR
+approval:
+  PATCH: [ontology-engineer]
+  MINOR: [module-steward]
+  MAJOR: [module-steward, enterprise-ontology-architect, domain-sme]
+change_registry:
+  required_fields: [changeId, ticket, author, reason]

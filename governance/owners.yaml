@@ -1,0 +1,13 @@
+modules:
+  ontology/fnd/core.ttl:
+    steward: Enterprise Ontology Team
+    required_reviewers: [enterprise-ontology-architect]
+  ontology/ins/policy.ttl:
+    steward: Policy Ontology Steward
+    required_reviewers: [module-steward]
+  ontology/ins/claim.ttl:
+    steward: Claim Ontology Steward
+    required_reviewers: [module-steward]
+  vocabulary/ins/claim-status.ttl:
+    steward: Claims Reference Data Steward
+    required_reviewers: [reference-data-steward]

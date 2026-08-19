@@ -1,0 +1,10 @@
+@prefix cs:   <https://data.chubb.com/vocabulary/ins/claim-status/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+cs: a skos:ConceptScheme ;
+    dct:title "Chubb Claim Status Vocabulary - Demo"@en .
+
+cs:Open a skos:Concept ; skos:inScheme cs: ; skos:prefLabel "Open"@en ; skos:notation "OPEN" .
+cs:UnderReview a skos:Concept ; skos:inScheme cs: ; skos:prefLabel "Under Review"@en ; skos:notation "REVIEW" .
+cs:Closed a skos:Concept ; skos:inScheme cs: ; skos:prefLabel "Closed"@en ; skos:notation "CLOSED" .

@@ -1,0 +1,19 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad="0.2", nodesep="0.35", ranksep="0.5"];
+  node [shape=box, style="rounded,filled", fillcolor="white", fontname="Arial", fontsize=10];
+  release [label="Approved Ontology\nRelease 1.1.0"];
+  registry [label="Ontology Registry\ncurrent = 1.1.0"];
+  bus [shape=ellipse, label="enterprise.ontology.release\nKafka / event bus"];
+  graphdb [label="Graph Platform\nGraphDB / Stardog / Neptune"];
+  mapping [label="Semantic Mapping &\nIngestion Pipelines"];
+  api [label="Semantic APIs /\nData Products"];
+  ai [label="AI / RAG / Agents\nsemantic context cache"];
+  docs [label="Documentation &\nCatalog Portal"];
+  release -> registry;
+  release -> bus;
+  bus -> graphdb;
+  bus -> mapping;
+  bus -> api;
+  bus -> ai;
+  bus -> docs;
+}

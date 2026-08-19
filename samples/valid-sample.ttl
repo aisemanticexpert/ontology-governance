@@ -1,0 +1,14 @@
+@prefix res:    <https://data.chubb.com/resource/demo/> .
+@prefix policy: <https://data.chubb.com/ontology/ins/policy/> .
+@prefix claim:  <https://data.chubb.com/ontology/ins/claim/> .
+@prefix cs:     <https://data.chubb.com/vocabulary/ins/claim-status/> .
+
+res:Coverage-Property a policy:Coverage .
+res:POL-1001 a policy:CommercialPolicy ;
+    policy:policyNumber "POL-1001" ;
+    policy:hasCoverage res:Coverage-Property .
+
+res:CLM-9001 a claim:Claim ;
+    claim:claimNumber "CLM-9001" ;
+    claim:againstPolicy res:POL-1001 ;
+    claim:hasClaimStatus cs:Open .

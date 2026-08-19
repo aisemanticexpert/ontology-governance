@@ -1,0 +1,15 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad="0.2", nodesep="0.35", ranksep="0.5"];
+  node [shape=box, style="rounded,filled", fillcolor="white", fontname="Arial", fontsize=10, margin="0.12,0.08"];
+  edge [fontname="Arial", fontsize=9, arrowsize=0.7];
+  req [label="1. Change Request\nJIRA / requirement"];
+  edit [label="2. Developer edits\nOWL / SKOS / SHACL"];
+  diff [label="3. Semantic Diff\nRDF before vs after"];
+  validate [label="4. Quality Gates\nSyntax · namespace · SHACL\nconsistency · tests"];
+  impact [label="5. Impact & Version\nPATCH / MINOR / MAJOR"];
+  approve [label="6. Governance Approval\nrole based"];
+  release [label="7. Immutable Release\nversion IRI · manifest · PROV"];
+  event [label="8. Release Event\nregistry / Kafka"];
+  consume [label="9. Consumers Refresh\ngraph DB · APIs · AI/RAG"];
+  req -> edit -> diff -> validate -> impact -> approve -> release -> event -> consume;
+}

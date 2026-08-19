@@ -1,0 +1,19 @@
+{
+  "releaseId": "REL-1.0.0",
+  "version": "1.0.0",
+  "previousVersion": null,
+  "changeId": "CHG-2026-BOOTSTRAP",
+  "ticket": "ONTO-BOOTSTRAP",
+  "reason": "Initial governed demo baseline",
+  "approvedBy": "demo-bootstrap",
+  "releasedAt": "2026-08-19T08:00:00-04:00",
+  "impact": "INITIAL",
+  "changedFiles": [
+    "ontology/fnd/core.ttl",
+    "ontology/ins/policy.ttl",
+    "ontology/ins/claim.ttl",
+    "vocabulary/ins/claim-status.ttl",
+    "shapes/ins/policy.shacl.ttl",
+    "shapes/ins/claim.shacl.ttl"
+  ]
+}
