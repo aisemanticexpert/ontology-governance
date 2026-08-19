@@ -41,6 +41,8 @@ flowchart TD
 
 Download the rendered flowchart: [operation-flowchart.pdf](docs/images/operation-flowchart.pdf).
 
+Download the change lifecycle diagram: [change-lifecycle.pdf](docs/images/change-lifecycle.pdf).
+
 ## 1. Install
 
 ```bash
