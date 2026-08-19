@@ -6,10 +6,9 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-policy:CyberPolicy a owl:Class ;
-    rdfs:label "Cyber Policy"@en ;
-    rdfs:comment "Illustrative cyber insurance policy concept added through governed evolution."@en ;
-    rdfs:subClassOf policy:CommercialPolicy .
+policy:CommercialPolicy a owl:Class ;
+    rdfs:label "Commercial Policy"@en ;
+    rdfs:subClassOf policy:Policy .
 
 policy:PersonalPolicy a owl:Class ;
     rdfs:label "Personal Policy"@en ;
@@ -30,10 +29,6 @@ policy: a owl:Ontology ;
     vann:preferredNamespacePrefix "policy" ;
     vann:preferredNamespaceUri policy: ;
     owl:imports core: .
-
-policy:CommercialPolicy a owl:Class ;
-    rdfs:label "Commercial Policy"@en ;
-    rdfs:subClassOf policy:Policy .
 
 policy:Coverage a owl:Class ;
     rdfs:label "Coverage"@en .
