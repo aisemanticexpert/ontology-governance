@@ -43,6 +43,8 @@ Download the rendered flowchart: [operation-flowchart.pdf](docs/images/operation
 
 Download the change lifecycle diagram: [change-lifecycle.pdf](docs/images/change-lifecycle.pdf).
 
+Download the repository model diagram: [repository-model.pdf](docs/images/repository-model.pdf).
+
 ## 1. Install
 
 ```bash
