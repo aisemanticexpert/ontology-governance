@@ -1,0 +1,71 @@
+<mxfile host="app.diagrams.net" modified="2026-08-19T00:00:00.000Z" agent="GitHub Copilot" version="24.7.17" type="device">
+  <diagram id="operation-flow" name="Operation Flowchart">
+    <mxGraphModel dx="1200" dy="1800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a" value="Developer edits .ttl or .jsonld" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="20" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="b" value="watch.py detects save?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="315" y="120" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="c" value="govern.py parses artifacts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="250" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="d" value="Load approved release and working RDF graphs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="245" y="350" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="e" value="Semantic RDF diff" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="450" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="f" value="Namespace, SHACL, sample, and consistency validation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="220" y="550" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="g" value="Validation passes?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="315" y="650" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="h" value="Write FAIL report and stop" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="20" y="665" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="i" value="Classify NONE, PATCH, MINOR, or MAJOR" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="790" width="300" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="j" value="Recommend SemVer and write governance reports" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="245" y="890" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="k" value="Reviewer approves change?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="315" y="990" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="l" value="Revise or reset working tree" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="20" y="1005" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="m" value="release.py creates immutable snapshot" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="245" y="1130" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n" value="Write manifest, PROV-O record, event, and release state" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="190" y="1230" width="480" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o" value="Commit and push; CI repeats the gate" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="245" y="1330" width="370" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ab" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="a" target="b"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bc" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="b" target="c"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bb" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="b" target="b"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="650" y="165" /><mxPoint x="650" y="100" /><mxPoint x="430" y="100" /></Array></mxGeometry></mxCell>
+        <mxCell id="cd" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="c" target="d"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="de" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="d" target="e"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ef" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="e" target="f"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="fg" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="f" target="g"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="gh" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="g" target="h"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="gi" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="g" target="i"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="ij" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="i" target="j"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="jk" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="j" target="k"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="kl" value="No" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="k" target="l"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="la" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="l" target="a"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="km" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="k" target="m"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="mn" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="m" target="n"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="no" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;" edge="1" parent="1" source="n" target="o"><mxGeometry relative="1" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

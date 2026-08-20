@@ -41,6 +41,8 @@ flowchart TD
 
 Download the rendered flowchart: [operation-flowchart.pdf](docs/images/operation-flowchart.pdf).
 
+Edit the flowchart in draw.io: [operation-flowchart.drawio](docs/images/operation-flowchart.drawio).
+
 Download the change lifecycle diagram: [change-lifecycle.pdf](docs/images/change-lifecycle.pdf).
 
 Download the repository model diagram: [repository-model.pdf](docs/images/repository-model.pdf).
