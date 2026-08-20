@@ -47,6 +47,8 @@ Download the change lifecycle diagram: [change-lifecycle.pdf](docs/images/change
 
 Download the repository model diagram: [repository-model.pdf](docs/images/repository-model.pdf).
 
+Stakeholder presentation: [Chubb_LegalEntity_Change_Stakeholder_Deck.pptx](docs/Chubb_LegalEntity_Change_Stakeholder_Deck.pptx).
+
 ## 1. Install
 
 ```bash

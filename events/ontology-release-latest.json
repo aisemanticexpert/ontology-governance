@@ -1,0 +1,15 @@
+{
+  "eventType": "ONTOLOGY_RELEASED",
+  "organization": "Chubb",
+  "ontologyBundle": "enterprise",
+  "previousVersion": "1.0.0",
+  "version": "2.0.0",
+  "changeId": "CHG-2026-3472F7",
+  "ticket": "ONTO-453",
+  "impact": "MAJOR",
+  "approvedBy": "Rajesh Gupta",
+  "releasedAt": "2026-08-20T08:22:43+00:00",
+  "changedFiles": [
+    "ontology/fnd/core.ttl"
+  ]
+}

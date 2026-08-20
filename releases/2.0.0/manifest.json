@@ -1,0 +1,19 @@
+{
+  "releaseId": "REL-2.0.0",
+  "version": "2.0.0",
+  "previousVersion": "1.0.0",
+  "changeId": "CHG-2026-3472F7",
+  "ticket": "ONTO-453",
+  "reason": "Replace Party with LegalEntity in the foundation ontology",
+  "approvedBy": "Rajesh Gupta",
+  "releasedAt": "2026-08-20T08:22:43+00:00",
+  "author": {
+    "authorName": "Rajesh Gupta",
+    "authorEmail": "rajesh21gupta@gmail.com",
+    "commit": "a74c0c5"
+  },
+  "impact": "MAJOR",
+  "changedFiles": [
+    "ontology/fnd/core.ttl"
+  ]
+}

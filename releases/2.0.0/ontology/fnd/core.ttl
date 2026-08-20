@@ -24,9 +24,12 @@ core:identifier a owl:DatatypeProperty ;
 
 core: a owl:Ontology ;
     dct:description "Illustrative foundation module used by the ontology-governance demo."@en ;
+    dct:issued "2026-08-20T08:22:43+00:00" ;
     dct:title "Chubb Enterprise Foundation Ontology - Demo"@en ;
     vann:preferredNamespacePrefix "core" ;
-    vann:preferredNamespaceUri core: .
+    vann:preferredNamespaceUri core: ;
+    owl:versionIRI core:2.0.0 ;
+    owl:versionInfo "2.0.0" .
 
 core:Organization a owl:Class ;
     rdfs:label "Organization"@en ;

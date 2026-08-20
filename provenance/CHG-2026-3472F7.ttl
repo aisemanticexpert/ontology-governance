@@ -1,0 +1,15 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+<https://data.chubb.com/ontology/misc/governance/CHG-2026-3472F7> a prov:Activity ;
+    dcterms:description "Replace Party with LegalEntity in the foundation ontology" ;
+    dcterms:identifier "CHG-2026-3472F7" ;
+    dcterms:relation "ONTO-453" ;
+    prov:generated <https://data.chubb.com/ontology/misc/governance/Release-2.0.0> ;
+    prov:wasAssociatedWith <https://data.chubb.com/resource/agent/rajesh21gupta-gmail.com> .
+
+<https://data.chubb.com/ontology/misc/governance/Release-2.0.0> a prov:Entity ;
+    dcterms:hasVersion "2.0.0" ;
+    dcterms:isVersionOf <https://data.chubb.com/ontology/enterprise-bundle> ;
+    prov:wasGeneratedBy <https://data.chubb.com/ontology/misc/governance/CHG-2026-3472F7> .
+

@@ -1,0 +1,15 @@
+@prefix sh:      <http://www.w3.org/ns/shacl#> .
+@prefix shclaim: <https://data.chubb.com/shapes/ins/claim/> .
+@prefix claim:   <https://data.chubb.com/ontology/ins/claim/> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+shclaim:ClaimShape a sh:NodeShape ;
+    sh:targetClass claim:Claim ;
+    sh:property [
+        sh:path claim:claimNumber ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:string ;
+        sh:message "A claim must have exactly one string claimNumber."@en
+    ] ;
+    sh:property [
+        sh:path claim:againstPolicy ; sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "A claim must reference exactly one policy."@en
+    ] .
